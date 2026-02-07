@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Parliament of ToadVille Bay</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/Images/ToadVilleCOA.png" />
+</head>
+<body>
+  <header class="site-header" style="background-image:url('assets/images/header.jpg');">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <img src="assets/Images/ToadVilleCOA.png" alt="ToadVille Coat of Arms" class="coa-image" />
+        <div>
+          <h1>Parliament of ToadVille Bay</h1>
+          <p>Official parliamentary information</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="navMenu" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="seating.html">Chamber seating</a>
+        <a href="members.html">Members</a>
+        <a href="parties.html">Parties</a>
+        <a href="provinces.html">Provinces</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      document.getElementById("navMenu").classList.toggle("active");
+      this.classList.toggle("active");
+    });
+    document.querySelectorAll(".nav a").forEach(link => {
+      link.addEventListener("click", function() {
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("menuToggle").classList.remove("active");
+      });
+    });
+  </script>
+
+  <main class="container">
+    <h2 class="page-title">Welcome</h2>
+    <p class="page-subtitle">Find Members, view seating, and explore party representation.</p>
+
+    <div class="grid-2">
+      <section class="card">
+        <h3 style="margin-top:0;">Today in Parliament</h3>
+        <div class="kv">
+          <div class="k">Chamber size</div><div class="v">203 seats</div>
+          <div class="k">Government</div><div class="v">Bloc ToadVille (majority)</div>
+          <div class="k">Session</div><div class="v">1st Session, 12th Parliament</div>
+        </div>
+        <p style="margin:14px 0 0; color:var(--muted);">
+          Seating reflects party representation at the opening of the session and may change due to by-elections or changes of caucus.
+        </p>
+      </section>
+
+      <aside class="card">
+        <h3 style="margin-top:0;">Quick links</h3>
+        <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted);">
+          <li><a href="seating.html">View chamber seating</a></li>
+          <li><a href="members.html">Browse Members</a></li>
+          <li><a href="parties.html">Party list & totals</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Parliament of ToadVille Bay</div>
+      <div><a href="seating.html">View seating</a> | <a href="members.html">Members</a> | <a href="provinces.html">Provinces</a></div>
+    </div>
+  </footer>
+</body>
+</html>

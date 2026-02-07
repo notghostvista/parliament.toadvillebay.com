@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Provinces & Electoral Districts | Parliament of ToadVille Bay</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/Images/ToadVilleCOA.png" />
+  <style>
+    .provinces-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .province-card {
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      .province-card {
+        background: var(--panel);
+      }
+    }
+    .province-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-color: var(--bloc);
+    }
+    .province-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .province-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+    .seats-badge {
+      background: var(--bloc);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .region-text {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 8px 0;
+    }
+    .municipalities-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .province-card.expanded .municipalities-list {
+      max-height: 300px;
+    }
+    .municipalities-list li {
+      list-style: none;
+      padding: 4px 0;
+      font-size: 13px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .municipalities-list li:last-child {
+      border-bottom: none;
+    }
+    .seat-count {
+      font-weight: bold;
+      color: var(--ink);
+      font-size: 12px;
+    }
+    .collapse-icon {
+      transition: transform 0.3s ease;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+    .province-card.expanded .collapse-icon {
+      transform: rotate(180deg);
+    }
+    .electoral-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .stat-box {
+      background: var(--panel);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--bloc);
+      margin: 8px 0;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" style="background-image:url('assets/images/header.jpg');">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <img src="assets/Images/ToadVilleCOA.png" alt="ToadVille Coat of Arms" class="coa-image" />
+        <div>
+          <h1>Parliament of ToadVille Bay</h1>
+          <p>Electoral Provinces & Districts</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="navMenu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="seating.html">Chamber seating</a>
+        <a href="members.html">Members</a>
+        <a href="parties.html">Parties</a>
+        <a href="provinces.html" aria-current="page">Provinces</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      document.getElementById("navMenu").classList.toggle("active");
+      this.classList.toggle("active");
+    });
+    document.querySelectorAll(".nav a").forEach(link => {
+      link.addEventListener("click", function() {
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("menuToggle").classList.remove("active");
+      });
+    });
+  </script>
+
+  <main class="container">
+    <h2 class="page-title">Electoral Provinces</h2>
+    <p class="page-subtitle">ToadVille Bay is divided into 13 provinces with 203 parliamentary seats.</p>
+
+    <section class="card">
+      <div class="electoral-stats">
+        <div class="stat-box">
+          <div class="stat-label">Total Provinces</div>
+          <div class="stat-number">13</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Total Seats</div>
+          <div class="stat-number">203</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Largest Province</div>
+          <div class="stat-number">20</div>
+          <div class="stat-label" style="font-size:11px">(Mihajl, Sonora)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:20px;">
+      <h3 style="margin-top:0;">Provinces & Municipalities</h3>
+      <div class="provinces-grid" id="provincesContainer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Parliament of ToadVille Bay</div>
+      <div><a href="seating.html">View seating</a> | <a href="members.html">Members</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/seating.js"></script>
+  <script>
+    // Display provinces with municipalities
+    const container = document.getElementById("provincesContainer");
+    
+    for (const province of provinces) {
+      const municipalities = provinceMunicipalities[province.key] || [];
+      const card = document.createElement("div");
+      card.className = "province-card";
+      
+      const header = document.createElement("div");
+      header.className = "province-header";
+      
+      const nameDiv = document.createElement("div");
+      nameDiv.innerHTML = `
+        <h3 class="province-name">${province.name}</h3>
+        <div class="region-text">${province.region}</div>
+      `;
+      
+      const seatsDiv = document.createElement("div");
+      seatsDiv.className = "seats-badge";
+      seatsDiv.textContent = `${province.seats} Seats`;
+      
+      header.appendChild(nameDiv);
+      header.appendChild(seatsDiv);
+      
+      const muniList = document.createElement("ul");
+      muniList.className = "municipalities-list";
+      
+      municipalities.forEach(muni => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${muni.name}</strong> <span class="seat-count">${muni.seats} seat${muni.seats !== 1 ? 's' : ''}</span><br><span class="stat-label">Population: ${muni.pop.toLocaleString()}</span>`;
+        muniList.appendChild(li);
+      });
+      
+      card.appendChild(header);
+      card.appendChild(muniList);
+      
+      card.addEventListener("click", function() {
+        this.classList.toggle("expanded");
+      });
+      
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
