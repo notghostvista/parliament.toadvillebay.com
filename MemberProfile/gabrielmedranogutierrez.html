@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prime Minister Gabriel Medrano Gutiérrez | Parliament of ToadVille Bay</title>
+  <meta name="description" content="Prime Minister Gabriel Medrano Gutiérrez - Head of Government of ToadVille Bay, in office since 03 July 2019." />
+  <meta property="og:title" content="Prime Minister Gabriel Medrano Gutiérrez" />
+  <meta property="og:description" content="Prime Minister Gabriel Medrano Gutiérrez - Head of Government of ToadVille Bay" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://parliament.toadvillebay.com/MemberProfile/gabrielmedranogutierrez.html" />
+  <meta property="og:image" content="https://parliament.toadvillebay.com/assets/Images/gabemedgutierrez.jpg" />
+  <meta property="og:image:alt" content="Gabriel Medrano Gutiérrez" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="../assets/Images/ToadVilleCOA.png" />
+</head>
+<body>
+  <header class="site-header" style="background-image:url('../assets/images/header.jpg');">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <img src="../assets/Images/ToadVilleCOA.png" alt="ToadVille Coat of Arms" class="coa-image" />
+        <div>
+          <h1>Parliament of ToadVille Bay</h1>
+          <p>Prime Minister</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="navMenu" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../seating.html">Chamber seating</a>
+        <a href="../members.html">Members</a>
+        <a href="../parties.html">Parties</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="pm-header-section">
+      <h2 class="page-title">Prime Minister Gabriel Medrano Gutiérrez</h2>
+      <p class="page-subtitle">Head of Government</p>
+    </div>
+
+    <div class="pm-profile">
+      <div class="pm-image">
+        <img src="../assets/Images/gabemedgutierrez.jpg" alt="Gabriel Medrano Gutiérrez" style="width:100%; border-radius:12px;">
+      </div>
+
+      <div class="pm-details">
+        <section class="card">
+          <h3 style="margin-top:0;">Official Position</h3>
+          <div class="kv">
+            <div class="k">Title</div><div class="v">Prime Minister</div>
+            <div class="k">Party</div><div class="v"><span class="pill"><span class="dot" style="background:var(--bloc)"></span>Bloc ToadVille</span></div>
+            <div class="k">District</div><div class="v">Vistaux</div>
+            <div class="k">Seat</div><div class="v">1</div>
+            <div class="k">In Office Since</div><div class="v">03 July 2019</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3 style="margin-top:0;">Biography</h3>
+          <div class="kv">
+            <div class="k">Date of Birth</div><div class="v">29 May 2009</div>
+            <div class="k">Place of Birth</div><div class="v">ToadVille Bay D.F., Distrito Federal</div>
+          </div>
+          <p style="margin:14px 0 0; color:var(--muted); font-size:13px;">
+            Gabriel Medrano Gutiérrez serves as Prime Minister of ToadVille Bay, leading the Bloc ToadVille party which holds the majority in the 203-seat chamber. He is responsible for overseeing government operations and parliamentary affairs.
+          </p>
+        </section>
+
+        <section class="card">
+          <h3 style="margin-top:0;">Quick Links</h3>
+          <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px;">
+            <li><a href="../index.html">Back to Home</a></li>
+            <li><a href="../seating.html">View Chamber Seating</a></li>
+            <li><a href="../members.html">Browse all Members</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Parliament of ToadVille Bay</div>
+      <div><a href="../members.html">Members</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      const navMenu = document.getElementById("navMenu");
+      navMenu.classList.toggle("active");
+      this.classList.toggle("active");
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll(".nav a").forEach(link => {
+      link.addEventListener("click", function() {
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("menuToggle").classList.remove("active");
+      });
+    });
+  </script>
+</body>
+</html>

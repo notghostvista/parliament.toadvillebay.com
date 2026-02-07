@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Member Profile | Parliament of ToadVille Bay</title>
+  <meta name="description" content="Member of Parliament profile with party affiliation and district information." />
+  <meta property="og:title" content="Member Profile | Parliament of ToadVille Bay" />
+  <meta property="og:description" content="View detailed profile of a member of parliament." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://parliament.toadvillebay.com/member.html" />
+  <meta property="og:image" content="https://parliament.toadvillebay.com/assets/Images/ToadVilleCOA.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/Images/ToadVilleCOA.png" />
+</head>
+<body>
+  <header class="site-header" style="background-image:url('assets/images/header.jpg');">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <img src="assets/Images/ToadVilleCOA.png" alt="ToadVille Coat of Arms" class="coa-image" />
+        <div>
+          <h1>Parliament of ToadVille Bay</h1>
+          <p>Member profile</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="navMenu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="seating.html">Chamber seating</a>
+        <a href="members.html">Members</a>
+        <a href="parties.html">Parties</a>
+        <a href="provinces.html">Provinces</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      document.getElementById("navMenu").classList.toggle("active");
+      this.classList.toggle("active");
+    });
+    document.querySelectorAll(".nav a").forEach(link => {
+      link.addEventListener("click", function() {
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("menuToggle").classList.remove("active");
+      });
+    });
+  </script>
+
+  <main class="container">
+    <h2 class="page-title" id="memberName">Member</h2>
+    <p class="page-subtitle" id="memberSubtitle">—</p>
+
+    <div class="grid-2">
+      <section class="card">
+        <h3 style="margin-top:0;">Details</h3>
+        <div class="kv" id="kv"></div>
+      </section>
+
+      <aside class="card">
+        <h3 style="margin-top:0;">Links</h3>
+        <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted);">
+          <li><a href="members.html">Back to Members</a></li>
+          <li><a href="seating.html">View seating</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Parliament of ToadVille Bay</div>
+      <div><a href="members.html">Members</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const parties = [
+      { key:"bloc",   name:"Bloc ToadVille",          seats:108, colorVar:"--bloc" },
+      { key:"cons",   name:"Conservatives ToadVille", seats:53,  colorVar:"--cons" },
+      { key:"libs",   name:"Liberals",               seats:21,  colorVar:"--libs" },
+      { key:"renn",   name:"Renninsance",            seats:12,  colorVar:"--renn" },
+      { key:"soc",    name:"Socialist Society",      seats:8,   colorVar:"--soc"  },
+      { key:"extpat", name:"Extremepatriot Party",   seats:1,   colorVar:"--extpat"}
+    ];
+
+    function partyById(id){
+      let seatNo = 1;
+      for (const p of parties){
+        for (let i=1; i<=p.seats; i++){
+          if (seatNo === id) return { p, i, seatNo };
+          seatNo++;
+        }
+      }
+      return null;
+    }
+
+    const params = new URLSearchParams(location.search);
+    const id = Number(params.get("id") || "1");
+    const info = partyById(id);
+
+    const nameEl = document.getElementById("memberName");
+    const subEl  = document.getElementById("memberSubtitle");
+    const kv = document.getElementById("kv");
+
+    if (!info){
+      nameEl.textContent = "Member not found";
+      subEl.textContent = "Invalid profile ID.";
+    } else {
+      const memberName = `${info.p.name} MP ${info.i}`;
+      const district = `District ${info.seatNo}`;
+
+      nameEl.textContent = memberName;
+      subEl.textContent = district;
+
+      const color = getComputedStyle(document.documentElement).getPropertyValue(info.p.colorVar).trim();
+
+      kv.innerHTML = `
+        <div class="k">Seat ID</div><div class="v">${info.seatNo}</div>
+        <div class="k">Party</div>
+        <div class="v"><span class="pill"><span class="dot" style="background:${color}"></span>${info.p.name}</span></div>
+        <div class="k">District</div><div class="v">${district}</div>
+        <div class="k">Role</div><div class="v">Member of Parliament</div>
+      `;
+    }
+  </script>
+</body>
+</html>

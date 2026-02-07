@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Parties | Parliament of ToadVille Bay</title>
+  <meta name="description" content="Political party representation and statistics in parliament." />
+  <meta property="og:title" content="Political Parties | Parliament of ToadVille Bay" />
+  <meta property="og:description" content="Overview of 6 political parties represented in parliament." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://parliament.toadvillebay.com/parties.html" />
+  <meta property="og:image" content="https://parliament.toadvillebay.com/assets/Images/ToadVilleCOA.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/Images/ToadVilleCOA.png" />
+</head>
+<body>
+  <header class="site-header" style="background-image:url('assets/images/header.jpg');">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <img src="assets/Images/ToadVilleCOA.png" alt="ToadVille Coat of Arms" class="coa-image" />
+        <div>
+          <h1>Parliament of ToadVille Bay</h1>
+          <p>Parties</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="navMenu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="seating.html">Chamber seating</a>
+        <a href="members.html">Members</a>
+        <a href="parties.html" aria-current="page">Parties</a>
+        <a href="provinces.html">Provinces</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      document.getElementById("navMenu").classList.toggle("active");
+      this.classList.toggle("active");
+    });
+    document.querySelectorAll(".nav a").forEach(link => {
+      link.addEventListener("click", function() {
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("menuToggle").classList.remove("active");
+      });
+    });
+  </script>
+
+  <main class="container">
+    <h2 class="page-title">Parties</h2>
+    <p class="page-subtitle">Current party representation in the chamber.</p>
+
+    <section class="card">
+      <table class="table" aria-label="Parties table">
+        <thead>
+          <tr>
+            <th>Party</th>
+            <th>Position</th>
+            <th>Seats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--bloc)"></span>Bloc ToadVille</span></td><td>Centre-left to Centre</td><td><strong>108</strong></td></tr>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--cons)"></span>Conservatives ToadVille</span></td><td>Centre-right to Right</td><td><strong>53</strong></td></tr>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--libs)"></span>Liberals</span></td><td>Centre-left</td><td><strong>21</strong></td></tr>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--renn)"></span>Renninsance</span></td><td>Left</td><td><strong>12</strong></td></tr>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--soc)"></span>Socialist Society</span></td><td>Extreme-left</td><td><strong>8</strong></td></tr>
+          <tr><td><span class="pill"><span class="dot" style="background:var(--extpat)"></span>Extremepatriot Party</span></td><td>Extreme-right</td><td><strong>1</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Parliament of ToadVille Bay</div>
+      <div><a href="seating.html">View seating</a> | <a href="members.html">Members</a> | <a href="provinces.html">Provinces</a></div>
+    </div>
+  </footer>
+</body>
+</html>
