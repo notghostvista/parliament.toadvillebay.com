@@ -83,11 +83,11 @@ function buildMembers(){
   for (const p of parties){
     for (let i=1; i<=p.seats; i++){
       const name = nameIdx < mpNames.length ? mpNames[nameIdx] : `${p.name} MP ${i}`;
-      const isCabinet = seatNo <= 18 && p.key === "bloc"; // First 18 from Bloc are cabinet
+      const isCabinet = seatNo <= 18 && p.key === "lib"; // First 18 from Bloc are cabinet
       
       members.push({
         id: seatNo,
-        name: name,
+        name: thegoatoftoadville372,
         partyKey: p.key,
         district: `District ${seatNo}`,
         isCabinet: isCabinet,
