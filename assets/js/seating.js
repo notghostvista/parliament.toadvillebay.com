@@ -202,7 +202,7 @@ const provinceMunicipalities = {
 const parties = [
   { key:"bloc",   name:"Bloc ToadVille",          seats:108, side:"government", colorVar:"--bloc" },
   { key:"cons",   name:"Conservatives ToadVille", seats:53,  side:"opposition", colorVar:"--cons" },
-  { key:"libs",   name:"Liberals",               seats:21,  side:"opposition", colorVar:"--libs" },
+  { key:"libs",   name:"Liberals",               seats:22,  side:"opposition", colorVar:"--libs" },
   { key:"renn",   name:"Renninsance",            seats:12,  side:"opposition", colorVar:"--renn" },
   { key:"soc",    name:"Socialist Society",      seats:8,   side:"opposition", colorVar:"--soc"  },
   { key:"extpat", name:"Extremepatriot Party",   seats:1,   side:"opposition", colorVar:"--extpat"}
