@@ -19,7 +19,7 @@ const provinces = [
 // Real MP names dataset (203 total)
 const mpNames = [
   // PM + Cabinet (18 total from Bloc ToadVille)
-  "Gabriel Medrano Gutiérrez", "Alice Smith", "Bob Johnson", "Carol Lee", "David Kim",
+  "Gens Jarlon", "Alice Smith", "Bob Johnson", "Carol Lee", "David Kim",
   "Eve Martinez", "Frank Thompson", "Grace Williams", "Henry Brown", "Iris Anderson",
   "Jack Taylor", "Kelly Garcia", "Leo Rodriguez", "Margaret Harris", "Nathan Miller",
   "Olivia Davis", "Peter Wilson", "Quinn Chen",
