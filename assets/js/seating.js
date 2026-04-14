@@ -298,7 +298,7 @@ function overrideMember(seatId, data){
 
 // Cabinet members assignments (PM + 17 cabinet = 18 total)
 overrideMember(1, {
-  name: mpNames[0],  // Gabriel Medrano Gutiérrez
+  name: mpNames[0],  // thegoatoftoadville372 
   district: "Vistaux",
   role: "Prime Minister",
   marker: "PM",
