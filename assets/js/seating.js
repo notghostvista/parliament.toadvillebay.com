@@ -18,13 +18,13 @@ const provinces = [
 
 // Real MP names dataset (203 total)
 const mpNames = [
-  // PM + Cabinet (18 total from Bloc ToadVille)
+  // PM + Cabinet (18 total from Liberals)
   "Gens Jarlon", "Alice Smith", "Bob Johnson", "Carol Lee", "David Kim",
   "Eve Martinez", "Frank Thompson", "Grace Williams", "Henry Brown", "Iris Anderson",
   "Jack Taylor", "Kelly Garcia", "Leo Rodriguez", "Margaret Harris", "Nathan Miller",
   "Olivia Davis", "Peter Wilson", "Quinn Chen",
   
-  // Rest of Bloc ToadVille (seats 19-108, 90 more members)
+  // Rest of Liberals (seats 19-108, 90 more members)
   "Rachel Martin", "Samuel Jackson", "Tara White", "Uma Patel", "Victor Lopez",
   "Wendy Moore", "Xavier Hall", "Yasmine Young", "Zachary King", "Amber Scott",
   "Brandon Green", "Courtney Adams", "Dominic Nelson", "Emma Nelson", "Ethan Carter",
@@ -198,11 +198,11 @@ const provinceMunicipalities = {
   ]
 };
 
-// Party totals (203 seats) with Bloc majority
+// Party totals (203 seats) with Conservatives majority
 const parties = [
-  { key:"bloc",   name:"Bloc ToadVille",          seats:108, side:"government", colorVar:"--bloc" },
-  { key:"cons",   name:"Conservatives ToadVille", seats:53,  side:"opposition", colorVar:"--cons" },
-  { key:"libs",   name:"Liberals",               seats:22,  side:"opposition", colorVar:"--libs" },
+  { key:"cons",   name:"Conservatives ToadVille", seats:108, side:"government", colorVar:"--cons" },
+  { key:"bloc",   name:"Bloc ToadVille",          seats:53,  side:"opposition", colorVar:"--bloc" },
+  { key:"libs",   name:"Liberals",               seats:21,  side:"opposition", colorVar:"--libs" },
   { key:"renn",   name:"Renninsance",            seats:12,  side:"opposition", colorVar:"--renn" },
   { key:"soc",    name:"Socialist Society",      seats:8,   side:"opposition", colorVar:"--soc"  },
   { key:"extpat", name:"Extremepatriot Party",   seats:1,   side:"opposition", colorVar:"--extpat"}
@@ -239,20 +239,20 @@ function buildMembers(){
       const profileUrl = generateProfileUrl(name);
       const imageUrl = `https://picsum.photos/300/400?random=${seatNo}`;
       
-      // Determine party assignment (Bloc gets majority)
-      let partyKey = "bloc";
+      // Determine party assignment (Conservatives get majority)
+      let partyKey = "cons";
       let assigned = false;
       
-      // First assign to Bloc until majority is reached
+      // First assign to Conservatives until majority is reached
       if (seatNo <= 108){
-        partyKey = "bloc";
+        partyKey = "cons";
         assigned = true;
       } else {
         // Then distribute opposition parties
         const oppSeats = 203 - 108; // 95 opposition seats
         const remaining = seatNo - 108; // Which opposition seat is this
         
-        if (remaining <= 53) partyKey = "cons";
+        if (remaining <= 53) partyKey = "bloc";
         else if (remaining <= 53 + 21) partyKey = "libs";
         else if (remaining <= 53 + 21 + 12) partyKey = "renn";
         else if (remaining <= 53 + 21 + 12 + 8) partyKey = "soc";
@@ -298,13 +298,16 @@ function overrideMember(seatId, data){
 
 // Cabinet members assignments (PM + 17 cabinet = 18 total)
 overrideMember(1, {
-  name: mpNames[0],  // thegoatoftoadville372 
+  name: "thegoatoftoadville372",
+  partyKey: "cons",
+  partyName: "Conservatives ToadVille",
+  side: "government",
   district: "Vistaux",
   role: "Prime Minister",
   marker: "PM",
   isCabinet: true,
   profileUrl: "MemberProfile/gabrielmedranogutierrez.html",
-  imageUrl: "assets/Images/gabemedgutierrez.jpg"
+  imageUrl: "assets/Images/pm-placeholder.jpg"
 });
 
 // Add remaining 17 cabinet members (seats 2-18)
